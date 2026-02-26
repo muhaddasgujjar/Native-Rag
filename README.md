@@ -1,5 +1,7 @@
 # Naive RAG — Dark Psychology Q&A
 
+🔗 **Live Demo:** [https://native-rag-jrlzjnerndkg4rbugoe57q.streamlit.app](https://native-rag-jrlzjnerndkg4rbugoe57q.streamlit.app/)
+
 A modular RAG pipeline that reads a Dark Psychology PDF and answers questions using ChromaDB + Groq LLaMA 3.3 70B.
 
 ## Setup
