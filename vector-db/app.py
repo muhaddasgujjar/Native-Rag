@@ -1,15 +1,25 @@
 import streamlit as st
+import os
+import sys
+import time
+
+# Fix imports for both local and Streamlit Cloud
+sys.path.insert(0, os.path.dirname(__file__))
+
 from extraction import extract_and_chunk
 from ingestion import VectorStore
 from generation import Generator
-import os
-import time
-from dotenv import load_dotenv
 
 # --- Configuration ---
-load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+# Try Streamlit secrets first (cloud), then .env (local)
+try:
+    GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+except Exception:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 PDF_PATH = os.path.join(os.path.dirname(__file__), "..", "dark pyscology.pdf")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # --- Page Config ---
 st.set_page_config(
